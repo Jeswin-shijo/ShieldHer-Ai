@@ -1,10 +1,24 @@
 import { Platform, StyleSheet, Text, type TextProps } from 'react-native';
 
-import { Fonts, ThemeColor } from '@/constants/theme';
+import { Fonts, Palette, ThemeColor } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
+export type ThemedTextType =
+  | 'default'
+  | 'bodyStrong'
+  | 'title'
+  | 'display'
+  | 'subtitle'
+  | 'heading'
+  | 'small'
+  | 'smallBold'
+  | 'caption'
+  | 'link'
+  | 'linkPrimary'
+  | 'code';
+
 export type ThemedTextProps = TextProps & {
-  type?: 'default' | 'title' | 'small' | 'smallBold' | 'subtitle' | 'link' | 'linkPrimary' | 'code';
+  type?: ThemedTextType;
   themeColor?: ThemeColor;
 };
 
@@ -16,10 +30,14 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
       style={[
         { color: theme[themeColor ?? 'text'] },
         type === 'default' && styles.default,
+        type === 'bodyStrong' && styles.bodyStrong,
         type === 'title' && styles.title,
+        type === 'display' && styles.display,
+        type === 'subtitle' && styles.subtitle,
+        type === 'heading' && styles.heading,
         type === 'small' && styles.small,
         type === 'smallBold' && styles.smallBold,
-        type === 'subtitle' && styles.subtitle,
+        type === 'caption' && styles.caption,
         type === 'link' && styles.link,
         type === 'linkPrimary' && styles.linkPrimary,
         type === 'code' && styles.code,
@@ -31,43 +49,70 @@ export function ThemedText({ style, type = 'default', themeColor, ...rest }: The
 }
 
 const styles = StyleSheet.create({
-  small: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: 500,
-  },
-  smallBold: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: 700,
-  },
-  default: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: 500,
+  // Giant numerals — SOS countdown, safety score. Rounded numerals on iOS.
+  display: {
+    fontSize: 56,
+    lineHeight: 60,
+    fontWeight: '800',
+    fontFamily: Fonts.rounded,
   },
   title: {
-    fontSize: 48,
-    fontWeight: 600,
-    lineHeight: 52,
+    fontSize: 32,
+    lineHeight: 38,
+    fontWeight: '700',
   },
   subtitle: {
-    fontSize: 32,
-    lineHeight: 44,
-    fontWeight: 600,
+    fontSize: 22,
+    lineHeight: 28,
+    fontWeight: '700',
+  },
+  heading: {
+    fontSize: 17,
+    lineHeight: 22,
+    fontWeight: '700',
+  },
+  default: {
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: '500',
+  },
+  bodyStrong: {
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: '700',
+  },
+  small: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '500',
+  },
+  smallBold: {
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: '700',
+  },
+  // Eyebrow / label / timestamp. Defaults to a muted tone; override via `style` for branded eyebrows.
+  caption: {
+    fontSize: 11,
+    lineHeight: 14,
+    fontWeight: '600',
+    letterSpacing: 0.6,
+    textTransform: 'uppercase',
+    color: Palette.textTertiary,
   },
   link: {
     lineHeight: 30,
     fontSize: 14,
   },
   linkPrimary: {
-    lineHeight: 30,
+    lineHeight: 20,
     fontSize: 14,
-    color: '#3c87f7',
+    fontWeight: '700',
+    color: Palette.primary,
   },
   code: {
     fontFamily: Fonts.mono,
-    fontWeight: Platform.select({ android: 700 }) ?? 500,
+    fontWeight: Platform.select({ android: '700' }) ?? '500',
     fontSize: 12,
   },
 });
