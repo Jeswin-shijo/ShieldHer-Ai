@@ -1,0 +1,21 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF3D86"/>
+      <stop offset="0.5" stop-color="#FF2D78"/>
+      <stop offset="1" stop-color="#A12BFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield -->
+  <path d="M512 188 C430 188 360 206 300 232 C288 237 282 248 282 262 L282 472 C282 626 372 726 506 798 C509 800 515 800 518 798 C652 726 742 626 742 472 L742 262 C742 248 736 237 724 232 C664 206 594 188 512 188 Z" fill="url(#shield)"/>
+
+  <!-- Protected figure: head -->
+  <circle cx="512" cy="404" r="86" fill="#FFFFFF"/>
+  <!-- Protected figure: shoulders -->
+  <path d="M396 644 C396 552 452 502 512 502 C572 502 628 552 628 644 Z" fill="#FFFFFF"/>
+
+  <!-- AI sparkles -->
+  <path d="M672 290 C672 323 685 336 718 336 C685 336 672 349 672 382 C672 349 659 336 626 336 C659 336 672 323 672 290 Z" fill="#FFFFFF"/>
+  <path d="M372 312 C372 331 379 338 398 338 C379 338 372 345 372 364 C372 345 365 338 346 338 C365 338 372 331 372 312 Z" fill="#FFFFFF" fill-opacity="0.9"/>
+</svg>
